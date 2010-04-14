@@ -1,0 +1,7 @@
+*.pyc
+*.db
+*.sql
+*~
+django
+couchdbkit
+notes/_design
