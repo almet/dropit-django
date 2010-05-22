@@ -13,24 +13,16 @@
 <div class="container" class="span-24">
 {% block header %}
 <a href=" {% url home %} "><h1>Drop It ! <span class="small">... and go away, brrr.</span></h1></a>
+<div id="menuitems"><ul>{% block menuitems %}{% endblock %}</ul></div>
 <hr>
 {% endblock %}
     <div id="content" class="span-18">
         {% block content %}{% endblock %}
     </div>
-    {% block menu %}    
     <div id="menu" class="span-6 last">
-    <h3>Actions</h3>
-        <ul>
-<!--            <li><a href="{% url home  %}">{% trans "back home" %}</a></li>-->
-            {% block menuitems %}
-        {% endblock %}
-        </ul>
-        {% block menufooter %}
-            
-        {% endblock %}
+    {% block content_header %}{% endblock %}
+    {% block rightmenu %}{% endblock %}
     </div>
-    {% endblock %}
     <div id="footer"></div>
 </div>
 </body>

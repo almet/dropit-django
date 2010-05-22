@@ -13,11 +13,13 @@
     <label for="id_tags">{% trans "Tags" %}:</label>
     {{ form.tags }}
 </div>
+{% comment %}
 <div class="span-6 last">
     {{ form.format.errors }}
     <label for="id_format"> {% trans "Format" %}:</label>
     {{ form.format }}
 </div>
+{% endcomment %}
 <div class="span-18">
     {{ form.content.errors }}
     <label for="id_content"> {% trans "Content" %}:</label></br>

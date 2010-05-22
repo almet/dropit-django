@@ -10,24 +10,24 @@
 </ul>
 {% endif %}
 <div id="note" class="span-18">
-    <p> {{note.content|safe}} </p>
+    <p> {{note.content}} </p>
 </div>
 {% endblock %}
 
-{% block submenuitems %}
+{% block content_header %}
 <li><a href="{% url notes:edit note.get_id %}">{% trans "edit this note" %}</a></li>
 <li><a href="{% url notes:delete note.get_id %}">{% trans "delete this note" %}</a></li>
 {% endblock %}
 
-{% if has_revisions %}
-{% block menufooter %}
+{% block rightmenu %}
+{% if note.has_revisions %}
 <h3> {% trans "Versions" %}</h3>
 <p class="small">{% trans "There is different version of your document, and you can browse them here" %}:</p>
 <ul>
-{% for revision in revisions %}
-    <li><a href="{% url notes:show note.get_id revision %}">{{ revision }}</a></li>
+{% for revision in note.revisions %}
+    <li><a href="{% url notes:show revision.get_id %}">{{ revision.title }}</a></li>
 {% endfor %}
 </ul>
-{% endblock %}
 {% endif %}
+{% endblock %}
 
