@@ -14,13 +14,28 @@ class Note(Document):
     date = DateTimeProperty(auto_now=True)
     is_head = BooleanProperty()
     root_note = StringProperty()
+    rev_number = IntegerProperty()
 
     def __unicode__():
         return self.title+":\n"+self.content
 
     def save_as_new(self):
+        """Save the note as a new one.
+
+        """
         self._id = slugify(self.title)
         self.is_head = True
+        self.rev_number = 1
+        return super(Note, self).save()
+
+    def save_as_revision_of(self, old_note):
+        old_note.is_head = False
+        old_note.save()
+        rev_number = old_note.rev_number + 1
+        self._id = "%s-%s" %(rev_number, old_note.root)
+        self.is_head = True
+        self.rev_number = rev_number
+        self.root_note = old_note.root
         return super(Note, self).save()
    
     @staticmethod
@@ -32,10 +47,12 @@ class Note(Document):
 
     @property
     def root(self):
-        """*always* returns the parent note id.
+        """*always* returns the root note id, even if the note is the root one.
+        If the note havent a root_note specified, let's suppose it's the root
+        one.
 
         """
-        if self.is_head and self.root_note:
+        if self.root_note:
             return self.root_note
         else:
             return self._id

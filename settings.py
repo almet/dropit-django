@@ -1,3 +1,6 @@
+import os.path
+PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -13,8 +16,8 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = True
 
-MEDIA_ROOT = ''
-MEDIA_URL = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH, 'staticfiles')
+MEDIA_URL = '/site_media/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 SECRET_KEY = '0#=s4i-c@^tm#*sk15%9hxhf$rwm6+$n3i$*)tbzv3*$6&$wzn'
@@ -34,14 +37,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'djangoapp.urls'
 
-import os.path
-PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
-
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
 )
-
-STATIC_DOC_ROOT = os.path.join(PROJECT_ROOT_PATH, 'staticfiles')
 
 INSTALLED_APPS = (
     'django.contrib.auth',

@@ -4,26 +4,42 @@
 <html>
 <head>
 <title>{% block title %}{% trans "welcome title" %}{% endblock %}</title>
-<link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection"> 
-<link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print"> 
-<!--[if lt IE 8]><link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
-<link rel="stylesheet" type="text/css" href="/site_media/css/screen.css" media="screen" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection"> 
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print"> 
+<!--[if lt IE 8]><link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/awesome.css" type="text/css" media="screen"> 
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/screen.css" media="screen" />
+{% block additional_css %}
+{% endblock %}
+{% block additional_js %}
+{% endblock %}
 </head>
 <body>
 <div class="container" class="span-24">
 {% block header %}
-<a href=" {% url home %} "><h1>Drop It ! <span class="small">... and go away, brrr.</span></h1></a>
-<div id="menuitems"><ul>{% block menuitems %}{% endblock %}</ul></div>
+<div class="span-14">
+    <a href=" {% url home %} "><h1>Drop It ! <span class="small">... and go away, brrr.</span></h1></a>
+</div>
+<div class="span-10 last" id="topmenu">
+    <ul>
+        <li><a class="awesome large red button" href="{% url notes:add %}">{% trans "Add a note" %}</a></li>
+        {% block menuitems %}{% endblock %}
+    </ul>
+</div>
+
 <hr>
 {% endblock %}
     <div id="content" class="span-18">
+    <ul id="content-header">
+        {% block content_header %}{% endblock %}
+    </ul>
         {% block content %}{% endblock %}
     </div>
     <div id="menu" class="span-6 last">
-    {% block content_header %}{% endblock %}
     {% block rightmenu %}{% endblock %}
     </div>
     <div id="footer"></div>
 </div>
+{% block page_javascript %}{% endblock %}
 </body>
 </html>

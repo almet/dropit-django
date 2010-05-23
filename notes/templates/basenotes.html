@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block menuitems %}
-<li><a href="{% url notes:add %}">{% trans "add a note" %}</a></li>
-<li><a href="{% url notes:list %}">{% trans "list your notes" %}</a></li>
+<li><a class="awesome large button" href="{% url notes:tags %}">{% trans "tags" %}</a></li>
+<li><a class="awesome large blue button" href="{% url notes:list %}">{% trans "your notes" %}</a></li>
 {% endblock %}

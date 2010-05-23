@@ -1,0 +1,8 @@
+{% extends "basenotes.html" %}
+{% block content %}
+<ul class="tagcloud">
+{% for tag in tags %}
+    <li class="cloud-{{ tag.value }}"><a href="{% url notes:tag tag.key %}">{{ tag.key }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

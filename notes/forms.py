@@ -1,7 +1,9 @@
 from couchdbkit.ext.django.forms import *
 from django import forms
-from notes.models import Note
 from django.conf import settings
+
+from notes.models import Note
+from notes.widgets import CommaSeparatedList
 
 class NoteForm(DocumentForm):
     """Form to create a note.
@@ -13,7 +15,7 @@ class NoteForm(DocumentForm):
         widget=forms.widgets.Textarea(attrs={'class': 'span-18'})
     )
     
-    tags =  forms.CharField()
+    tags =  forms.CharField(widget=CommaSeparatedList())
 #    format = forms.ChoiceField(choices=settings.NOTES_FORMATS)
     
     def clean_tags(self):

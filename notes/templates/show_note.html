@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block content %}
 <h2>{{ note.title }}</h2>
+<p>Dated of {{ note.date|date:"j M Y" }}</p>
 {% if note.tags %}
 <ul class="tags">
 {% for tag in note.tags %}
@@ -15,8 +16,8 @@
 {% endblock %}
 
 {% block content_header %}
-<li><a href="{% url notes:edit note.get_id %}">{% trans "edit this note" %}</a></li>
-<li><a href="{% url notes:delete note.get_id %}">{% trans "delete this note" %}</a></li>
+<li class="edit"><a href="{% url notes:edit note.get_id %}">{% trans "edit this note" %}</a></li>
+<li class="delete"><a href="{% url notes:delete note.get_id %}">{% trans "delete this note" %}</a></li>
 {% endblock %}
 
 {% block rightmenu %}

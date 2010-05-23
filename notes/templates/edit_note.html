@@ -3,12 +3,12 @@
 {% block content %}
 {% block subtitle %}<h2>{% trans "Editing a note" %}</h2>{% endblock %}
 <form method="post">
-<div class="span-6">
+<div class="span-12">
     {{ form.title.errors }}
     <label for="id_title"> {% trans "Title" %}:</label>
     {{ form.title }}
 </div>
-<div class="span-6">
+<div class="span-6 last">
     {{ form.tags.errors }}
     <label for="id_tags">{% trans "Tags" %}:</label>
     {{ form.tags }}
@@ -25,7 +25,23 @@
     <label for="id_content"> {% trans "Content" %}:</label></br>
     {{ form.content }}
 </div>
-<button>{% trans "drop it !" %}</button>
+<div class="span-18"><button>{% trans "drop it !" %}</button></div>
 </form>
-
 {% endblock %}
+{% comment %}
+{% block additional_js %}
+<script src="{{ MEDIA_URL }}js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ MEDIA_URL }}js/textboxlist/TextboxList.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ MEDIA_URL }}js/textboxlist/GrowingInput.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
+{% block additional_css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/textboxlist/TextboxList.css" type="text/css" media="screen" charset="utf-8" />
+{% endblock %}
+{% block page_javascript %}
+<script type="text/javascript" charset="utf-8">
+$(function(){
+    var tags = $('#id_tags').textboxlist({bitsOptions:{editable:{addKeys: [188]}}});
+});
+</script>
+{% endblock %}
+{% endcomment %}
