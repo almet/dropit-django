@@ -21,26 +21,15 @@ def list_notes(request):
         "notes": notes,
     }, request)
 
-def show_note(request, note_id, rev=None):
-    """Display a note in detail.
-
-    Here, we work with formats, but it's considered as an advanced feature.
-    Formats can be not implemented in others clients.
-
-    """
+def show_note(request, note_id):
     # get the note.
-    note = get_object_or_404(Note, note_id, rev=rev)
+    note = get_object_or_404(Note, note_id)
     return render("show_note.html", {
         'note': note,
     }, request)
 
 def add_note(request):
-    """Add a note
-        - GET request display the form
-        - POST request create the note and redirect if the add is successful
-    """
     note = None
-
     if request.POST:
         form = NoteForm(request.POST)
         if form.is_valid():

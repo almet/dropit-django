@@ -7,9 +7,6 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = ()
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'dropit.sql'
-
 TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
@@ -35,20 +32,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'djangoapp.urls'
+ROOT_URLCONF = 'dropit.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
     'couchdbkit.ext.django',
     'notes',
-    'gunicorn',
 )
 
 COUCHDB_DATABASES = (
@@ -60,3 +52,6 @@ NOTES_FORMATS = (
     ('fulltext','Full Text'), 
     ('rst', 'ReSTructured Text')
 )
+
+DATABASE_ENGINE = "sqlite3"
+DATABASE_NAME = "db.sql"

@@ -11,7 +11,12 @@
 {% if notes %}
 <table id="notes">
 <thead>
-    <tr><th>{% trans "title" %}</th><th>{% trans "tags" %}</th><th>{% trans "actions" %}</th></tr>
+    <tr>
+        <th>{% trans "title" %}</th>
+        <th>{% trans "tags" %}</th>
+        <th>{% trans "revisions" %}</th>
+        <th>{% trans "actions" %}</th>
+    </tr>
 </thead>
 <tbody>
 {% for note in notes %}
@@ -20,6 +25,11 @@
     <td>
     {% for tag in note.tags %}
     <a href="{% url notes:tag tag %}">{{ tag }}</a>
+    {% endfor %}
+    </td>
+    <td>
+    {% for rev in note.revisions %}
+        <a href="{% url notes:show rev.get_id %}">{{ rev.rev_number }}</a>
     {% endfor %}
     </td>
     <td>

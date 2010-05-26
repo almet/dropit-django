@@ -61,7 +61,7 @@ Get the DropIt Sources on Github
 
 Be sure to get the last version, on github::
 	
-	$ git clone http://github.com/ametaireau/Drop-It--.git dropit
+	$ git clone http://github.com/ametaireau/dropit-django.git dropit
 
 
 Generate the doc

@@ -3,6 +3,15 @@
 {% block content %}
 <h2>{{ note.title }}</h2>
 <p>Dated of {{ note.date|date:"j M Y" }}</p>
+<div id="revisions-navigation">
+{% if note.has_previous %}
+    <div class="revision-navigation previous"><a href="{% url notes:show note.previous_id %}">Previous</a></div>
+{% endif %}
+{% if note.has_next %}
+    <div class="revision-navigation next"><a href="{% url notes:show note.next_id %}">Next</a></div>
+{% endif %}
+<div class="clear"></div>
+</div>
 {% if note.tags %}
 <ul class="tags">
 {% for tag in note.tags %}
@@ -11,24 +20,25 @@
 </ul>
 {% endif %}
 <div id="note" class="span-18">
+
+<div id="content-header">
+    <li class="edit"><a href="{% url notes:edit note.get_id %}">{% trans "edit this note" %}</a></li>
+    <li class="delete"><a href="{% url notes:delete note.get_id %}">{% trans "delete this note" %}</a></li>
+</div>
     <p> {{note.content}} </p>
 </div>
 {% endblock %}
 
-{% block content_header %}
-<li class="edit"><a href="{% url notes:edit note.get_id %}">{% trans "edit this note" %}</a></li>
-<li class="delete"><a href="{% url notes:delete note.get_id %}">{% trans "delete this note" %}</a></li>
-{% endblock %}
-
 {% block rightmenu %}
 {% if note.has_revisions %}
-<h3> {% trans "Versions" %}</h3>
-<p class="small">{% trans "There is different version of your document, and you can browse them here" %}:</p>
-<ul>
+<h3> {% trans "Revisions" %}</h3>
+<p class="info small">{% trans "There is different versions of your documeent, you can browse them here" %}:</p>
+
+<ol>
 {% for revision in note.revisions %}
-    <li><a href="{% url notes:show revision.get_id %}">{{ revision.title }}</a></li>
+    <li><a href="{% url notes:show revision.get_id %}">{{ revision.date|date:"j M Y H:m:i"}}</a></li>
 {% endfor %}
-</ul>
+</ol>
 {% endif %}
 {% endblock %}
 
