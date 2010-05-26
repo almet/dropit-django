@@ -57,5 +57,3 @@ try:
     from local_settings import *
 except:
     pass
-DATABASE_ENGINE = "sqlite3"
-DATABASE_NAME = "db.sql"
