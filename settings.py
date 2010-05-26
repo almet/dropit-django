@@ -32,7 +32,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'dropit.urls'
+ROOT_URLCONF = 'djopit.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
