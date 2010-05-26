@@ -5,3 +5,4 @@
 django
 couchdbkit
 notes/_design
+local_settings.py
